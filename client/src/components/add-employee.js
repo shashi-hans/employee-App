@@ -9,6 +9,7 @@ const AddEmployee = (props) => {
   const navigate = useNavigate();
   const [employee, setemployee] = useState({
     name: '',
+    gender: '',
     email: '',
     phone: '',
     organization: '',
@@ -29,6 +30,7 @@ const AddEmployee = (props) => {
       .then((res) => {
         setemployee({
           name: '',
+          gender: '',
           email: '',
           phone: '',
           organization: '',
@@ -57,58 +59,63 @@ const AddEmployee = (props) => {
           </div>
           <div className='col-md-8 m-auto'>
             <h1 className='display-4 text-center'>Add Employee</h1>
-            <p className='lead text-center'>Create new Employee</p>
+            <p className='lead text-center'>Create new Employee Profile</p>
 
             <form noValidate onSubmit={onSubmit}>
               <div className='form-group'>
                 <input
                   type='text'
-                  placeholder='name'
+                  placeholder='Name'
                   name='name'
                   className='form-control'
                   value={employee.name}
                   onChange={onChange}
                 />
               </div>
-              <br />
-
               <div className='form-group'>
                 <input
                   type='text'
-                  placeholder='email'
+                  placeholder='Gender'
+                  name='gender'
+                  className='form-control'
+                  value={employee.gender}
+                  onChange={onChange}
+                />
+              </div>
+              <div className='form-group'>
+                <input
+                  type='text'
+                  placeholder='Email'
                   name='email'
                   className='form-control'
                   value={employee.email}
                   onChange={onChange}
                 />
               </div>
-
               <div className='form-group'>
                 <input
                   type='number'
-                  placeholder='phone'
+                  placeholder='Phone'
                   name='phone'
                   className='form-control'
                   value={employee.phone}
                   onChange={onChange}
                 />
               </div>
-
               <div className='form-group'>
                 <input
                   type='text'
-                  placeholder='organization name'
+                  placeholder='Organization Name'
                   name='organization'
                   className='form-control'
                   value={employee.organization}
                   onChange={onChange}
                 />
               </div>
-
               <div className='form-group'>
                 <input
                   type='text'
-                  placeholder='designation'
+                  placeholder='Designation'
                   name='designation'
                   className='form-control'
                   value={employee.designation}
@@ -118,7 +125,7 @@ const AddEmployee = (props) => {
               <div className='form-group'>
                 <input
                   type='number'
-                  placeholder='salary'
+                  placeholder='Salary'
                   name='salary'
                   className='form-control'
                   value={employee.salary}
@@ -128,14 +135,13 @@ const AddEmployee = (props) => {
               <div className='form-group'>
                 <input
                   type='text'
-                  placeholder='communication address'
+                  placeholder='Communication Address'
                   name='address'
                   className='form-control'
                   value={employee.address}
                   onChange={onChange}
                 />
               </div>
-
               <input
                 type='submit'
                 className='btn btn-outline-warning btn-block mt-4'

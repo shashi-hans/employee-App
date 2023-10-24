@@ -15,6 +15,7 @@ const EmployeeCard = (props) => {
             </div>
             <div >
                 <h2>{ employee.name }</h2>
+                <h3>{employee.gender}</h3>
                 <h3>{employee.phone}</h3>
                 <p>{employee.designation}</p>   
             </div>

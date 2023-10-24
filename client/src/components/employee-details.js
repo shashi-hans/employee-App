@@ -37,37 +37,42 @@ function ShowEmployeeDetails(props) {
         <tbody>
           <tr>
             <th scope='row'>1</th>
-            <td>name</td>
+            <td>Name</td>
             <td>{employee.name}</td>
           </tr>
           <tr>
             <th scope='row'>2</th>
-            <td>email</td>
-            <td>{employee.email}</td>
+            <td>Gender</td>
+            <td>{employee.gender}</td>
           </tr>
           <tr>
             <th scope='row'>3</th>
-            <td>phone</td>
-            <td>{employee.phone}</td>
+            <td>Email</td>
+            <td>{employee.email}</td>
           </tr>
           <tr>
             <th scope='row'>4</th>
-            <td>organization</td>
-            <td>{employee.organization}</td>
+            <td>Phone</td>
+            <td>{employee.phone}</td>
           </tr>
           <tr>
             <th scope='row'>5</th>
-            <td>designation</td>
+            <td>Organization</td>
+            <td>{employee.organization}</td>
+          </tr>
+          <tr>
+            <th scope='row'>6</th>
+            <td>Designation</td>
             <td>{employee.designation}</td>
           </tr>
           <tr>
-            <th scope='row'>6</th>
-            <td>salary</td>
+            <th scope='row'>7</th>
+            <td>Salary</td>
             <td>{employee.salary}</td>
           </tr>
           <tr>
-            <th scope='row'>6</th>
-            <td>address</td>
+            <th scope='row'>8</th>
+            <td>Address</td>
             <td>{employee.address}</td>
           </tr>
         </tbody>
@@ -84,11 +89,22 @@ function ShowEmployeeDetails(props) {
             <Link to='/' className='btn btn-outline-warning float-left'>
               Show Employee List
             </Link>
+          <div className='col-md-11'>
+            <Link
+              to='/create-employee'
+              className='btn btn-outline-warning float-right'
+            >
+              + Add New employee
+            </Link>
+            <br />
+            <br />
+            <hr />
+          </div>
           </div>
           <br />
           <div className='col-md-8 m-auto'>
-            <h1 className='display-4 text-center'>employee's Record</h1>
-            <p className='lead text-center'>View employee's Info</p>
+            <h1 className='display-4 text-center'>Employee's Record</h1>
+            <p className='lead text-center'>View Employee's Info</p>
             <hr /> <br />
           </div>
           <div className='col-md-10 m-auto'>{employeeItem}</div>
@@ -108,7 +124,7 @@ function ShowEmployeeDetails(props) {
               to={`/edit-employee/${employee._id}`}
               className='btn btn-outline-info btn-lg btn-block'
             >
-              Edit employee
+              Edit Employee
             </Link>
           </div>
         </div>

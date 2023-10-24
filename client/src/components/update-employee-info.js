@@ -6,6 +6,7 @@ import '../App.css';
 function UpdateEmployeeInfo(props) {
   const [employee, setemployee] = useState({
     name: '',
+    gender: '',
     phone: '',
     email: '',
     salary: '',
@@ -23,6 +24,7 @@ function UpdateEmployeeInfo(props) {
       .then((res) => {
         setemployee({
           name: res.data.name,
+          gender: res.data.gender,
           phone: res.data.phone,
           email: res.data.email,
           salary: res.data.salary,
@@ -45,6 +47,7 @@ function UpdateEmployeeInfo(props) {
 
     const data = {
       name: employee.name,
+      gender: employee.gender,
       phone: employee.phone,
       email: employee.email,
       salary: employee.salary,
@@ -74,15 +77,15 @@ function UpdateEmployeeInfo(props) {
             </Link>
           </div>
           <div className='col-md-8 m-auto'>
-            <h1 className='display-4 text-center'>Edit employee</h1>
-            <p className='lead text-center'>Update employee's Info</p>
+            <h1 className='display-4 text-center'>Edit Employee</h1>
+            <p className='lead text-center'>Update Employee's Info</p>
           </div>
         </div>
 
         <div className='col-md-8 m-auto'>
           <form noValidate onSubmit={onSubmit}>
             <div className='form-group'>
-              <label htmlFor='name'>name</label>
+              <label htmlFor='name'>Name</label>
               <input
                 type='text'
                 placeholder='name of the employee'
@@ -92,10 +95,19 @@ function UpdateEmployeeInfo(props) {
                 onChange={onChange}
               />
             </div>
-            <br />
-
             <div className='form-group'>
-              <label htmlFor='phone'>phone</label>
+              <label htmlFor='name'>Gender</label>
+              <input
+                type='text'
+                placeholder='gender of the employee'
+                name='gender'
+                className='form-control'
+                value={employee.gender}
+                onChange={onChange}
+              />
+            </div>
+            <div className='form-group'>
+              <label htmlFor='phone'>Phone</label>
               <input
                 type='text'
                 placeholder='phone'
@@ -105,10 +117,8 @@ function UpdateEmployeeInfo(props) {
                 onChange={onChange}
               />
             </div>
-            <br />
-
             <div className='form-group'>
-              <label htmlFor='email'>email</label>
+              <label htmlFor='email'>Email</label>
               <input
                 type='text'
                 placeholder='email'
@@ -118,11 +128,9 @@ function UpdateEmployeeInfo(props) {
                 onChange={onChange}
               />
             </div>
-            <br />
-
             <div className='form-group'>
-              <label htmlFor='salary'>salary</label>
-              <textarea
+              <label htmlFor='salary'>Salary</label>
+              <input
                 type='text'
                 placeholder='salary of the employee'
                 name='salary'
@@ -131,10 +139,8 @@ function UpdateEmployeeInfo(props) {
                 onChange={onChange}
               />
             </div>
-            <br />
-
             <div className='form-group'>
-              <label htmlFor='designation'>designation</label>
+              <label htmlFor='designation'>Designation</label>
               <input
                 type='text'
                 placeholder='designation'
@@ -144,10 +150,8 @@ function UpdateEmployeeInfo(props) {
                 onChange={onChange}
               />
             </div>
-            <br />
-
             <div className='form-group'>
-              <label htmlFor='organization'>organization</label>
+              <label htmlFor='organization'>Organization</label>
               <input
                 type='text'
                 placeholder='organization of the employee'
@@ -157,21 +161,17 @@ function UpdateEmployeeInfo(props) {
                 onChange={onChange}
               />
             </div>
-            <br />
-
             <div className='form-group'>
-              <label htmlFor='address'>address</label>
+              <label htmlFor='address'>Address</label>
               <input
                 type='text'
-                placeholder='address of the employee'
+                placeholder='Address of the employee'
                 name='address'
                 className='form-control'
                 value={employee.address}
                 onChange={onChange}
               />
             </div>
-            <br />
-
             <button
               type='submit'
               className='btn btn-outline-info btn-lg btn-block'

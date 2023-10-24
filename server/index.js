@@ -7,6 +7,9 @@ const createError = require("http-errors");
 // create express app
 const app = express();
 
+// Required Route
+const employeeRoutes = require('./routes/employee-route')
+
 // Middleware
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -16,13 +19,10 @@ app.use(bodyParser.json())
 // cors
 app.use(cors({ origin: true, credentials: true }));
 
-// define a root route
+// define a Test route
 app.get('/', (req, res) => {
   res.send("Hello Shashi ");
 });
-
-// Required employee routes
-const employeeRoutes = require('./routes/employee-route')
 
 // use Routes
 app.use('/api/employees', employeeRoutes)
