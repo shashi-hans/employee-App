@@ -85,23 +85,20 @@ function ShowEmployeeDetails(props) {
       <div className='container'>
         <div className='row'>
           <div className='col-md-10 m-auto'>
-            <br /> <br />
+            <br/> <br/>
             <Link to='/' className='btn btn-outline-warning float-left'>
               Show Employee List
             </Link>
-          <div className='col-md-11'>
+          {/* <div className='col-md-11'> */}
             <Link
               to='/create-employee'
               className='btn btn-outline-warning float-right'
             >
               + Add New employee
             </Link>
-            <br />
-            <br />
-            <hr />
+          {/* </div> */}
+          <br/><br/>
           </div>
-          </div>
-          <br />
           <div className='col-md-8 m-auto'>
             <h1 className='display-4 text-center'>Employee's Record</h1>
             <p className='lead text-center'>View Employee's Info</p>
