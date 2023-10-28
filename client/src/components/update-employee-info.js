@@ -5,10 +5,11 @@ import '../App.css';
 
 function UpdateEmployeeInfo(props) {
   const [employee, setemployee] = useState({
-    name: '',
+    full_name: '',
     gender: '',
     phone: '',
     email: '',
+    pan: '',
     salary: '',
     designation: '',
     organization: '',
@@ -23,10 +24,11 @@ function UpdateEmployeeInfo(props) {
       .get(`http://localhost:4000/api/employees/${id}`)
       .then((res) => {
         setemployee({
-          name: res.data.name,
+          full_name: res.data.full_name,
           gender: res.data.gender,
           phone: res.data.phone,
           email: res.data.email,
+          pan: res.data.pan,
           salary: res.data.salary,
           designation: res.data.designation,
           organization: res.data.organization,
@@ -46,10 +48,11 @@ function UpdateEmployeeInfo(props) {
     e.preventDefault();
 
     const data = {
-      name: employee.name,
+      full_name: employee.full_name,
       gender: employee.gender,
       phone: employee.phone,
       email: employee.email,
+      pan: employee.pan,
       salary: employee.salary,
       designation: employee.designation,
       organization: employee.organization,
@@ -85,18 +88,18 @@ function UpdateEmployeeInfo(props) {
         <div className='col-md-8 m-auto'>
           <form noValidate onSubmit={onSubmit}>
             <div className='form-group'>
-              <label htmlFor='name'>Name</label>
+              <label htmlFor='full_name'>Name</label>
               <input
                 type='text'
-                placeholder='name of the employee'
-                name='name'
+                placeholder='full_name of the employee'
+                name='full_name'
                 className='form-control'
-                value={employee.name}
+                value={employee.full_name}
                 onChange={onChange}
               />
             </div>
             <div className='form-group'>
-              <label htmlFor='name'>Gender</label>
+              <label htmlFor='gender'>Gender</label>
               <input
                 type='text'
                 placeholder='gender of the employee'
@@ -115,6 +118,17 @@ function UpdateEmployeeInfo(props) {
                 className='form-control'
                 value={employee.phone}
                 onChange={onChange}
+              />
+            </div>
+            <div className='form-group'>
+              <label htmlFor='pan'>PAN number</label>
+              <input
+              type='text'
+              placeholder='Pan Number'
+              name='pan'
+              className='form-control'
+              value={employee.pan}
+              onChange={onChange}
               />
             </div>
             <div className='form-group'>

@@ -83,7 +83,7 @@
 }
 
 .desc {
-  height: 150px;
+  height: 100%;
   width:130px;
 }
 
@@ -104,4 +104,12 @@
 
 .md5 {
   margin-bottom: 5px;
+}
+
+.btn-block {
+  margin-bottom: 2rem ;
+}
+
+.error-message {
+  color: rgb(250, 22, 22);
 }

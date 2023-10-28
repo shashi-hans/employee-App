@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
     })  
     .catch(err => {
         console.log('Unable to add this Employee')
-        console.log("<<<<<error>>>",error)
+        console.log("<<<<<error>>>",err)
         res.status(404).json({ error: 'Unable to add this Employee' })
     });
 });

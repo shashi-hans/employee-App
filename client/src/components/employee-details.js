@@ -38,7 +38,7 @@ function ShowEmployeeDetails(props) {
           <tr>
             <th scope='row'>1</th>
             <td>Name</td>
-            <td>{employee.name}</td>
+            <td>{employee.full_name}</td>
           </tr>
           <tr>
             <th scope='row'>2</th>
@@ -57,21 +57,26 @@ function ShowEmployeeDetails(props) {
           </tr>
           <tr>
             <th scope='row'>5</th>
+            <td>PAN</td>
+            <td>{employee.pan}</td>
+          </tr>
+          <tr>
+            <th scope='row'>6</th>
             <td>Organization</td>
             <td>{employee.organization}</td>
           </tr>
           <tr>
-            <th scope='row'>6</th>
+            <th scope='row'>7</th>
             <td>Designation</td>
             <td>{employee.designation}</td>
           </tr>
           <tr>
-            <th scope='row'>7</th>
+            <th scope='row'>8</th>
             <td>Salary</td>
             <td>{employee.salary}</td>
           </tr>
           <tr>
-            <th scope='row'>8</th>
+            <th scope='row'>9</th>
             <td>Address</td>
             <td>{employee.address}</td>
           </tr>

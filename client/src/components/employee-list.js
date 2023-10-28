@@ -7,6 +7,11 @@ import EmployeeCard from './employee-card';
 function ShowEmployeeList() {
   const [employees, setemployees] = useState([]);
 
+  const employeeList =
+    employees.length === 0
+      ? 'No employees Available'
+      : employees.map((employee, k) => <EmployeeCard employee={employee} key={k} />);
+      
   useEffect(() => {
     axios
       .get('http://localhost:4000/api/employees')
@@ -17,11 +22,6 @@ function ShowEmployeeList() {
         console.log('Error from ShowEmployeeList');
       });
   }, []);
-
-  const employeeList =
-    employees.length === 0
-      ? 'No employees Available'
-      : employees.map((employee, k) => <EmployeeCard employee={employee} key={k} />);
 
   return (
     <div className='ShowEmployeeList'>
