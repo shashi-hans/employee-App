@@ -44,7 +44,7 @@ function UpdateEmployeeInfo(props) {
       .catch((err) => {
         console.log('Error from UpdateEmployeeInfo');
       });
-  }, [id]);
+  }, [id,fullURL]);
 
   const onChange = (e) => {
     setemployee({ ...employee, [e.target.name]: e.target.value });

@@ -25,7 +25,7 @@ function ShowEmployeeList() {
       .catch((err) => {
         console.log('Error from ShowEmployeeList');
       });
-  }, []);
+  }, [fullURL]);
 
   const employeeList =
     employees.length === 0

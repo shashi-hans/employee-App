@@ -25,7 +25,7 @@ function ShowEmployeeDetails(props) {
       .catch((err) => {
         console.log('Error from ShowEmployeeDetails');
       });
-  }, [id]);
+  }, [id,fullURL]);
 
   const onDeleteClick = (id) => {
     axios
