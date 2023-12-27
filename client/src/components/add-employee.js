@@ -70,11 +70,22 @@ const AddEmployee = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if(errors){
-      console.log("Employee Profile not created. Please fill correct data and remove errors")
+    let isLengthGreaterThanOne
+    for (const key in errors) {
+      if (errors.hasOwnProperty(key)) {
+        const value = errors[key];
+        isLengthGreaterThanOne = value.length > 1;
+    
+        console.log(`${key}: ${isLengthGreaterThanOne ? 'Valid' : 'Invalid'}`);
+      }
+    }
+    if(isLengthGreaterThanOne){
+      console.log("Employee Profile not created. Please fill correct data and remove errors ")
+      console.log(typeof errors)
       }else{
+        const apiUrl = process.env.PORT || 4000;
         // Extract the base URL
-        const baseURL = `${window.location.protocol}//${window.location.hostname}${(window.location.port ? `:${window.location.port}` : '')}`;
+        const baseURL = `${window.location.protocol}//${window.location.hostname}${(apiUrl ? `:${apiUrl}` : '')}`;
 
         const endpoint = '/api/employees';
         // Construct the full URL

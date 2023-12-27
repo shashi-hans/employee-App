@@ -7,12 +7,14 @@ import EmployeeCard from './employee-card';
 function ShowEmployeeList() {
   const [employees, setemployees] = useState([]);
 
+  const apiUrl = process.env.PORT || 4000;
    // Extract the base URL
-   const baseURL = `${window.location.protocol}//${window.location.hostname}${(window.location.port ? `:${window.location.port}` : '')}`;
+   const baseURL = `${window.location.protocol}//${window.location.hostname}${(apiUrl ? `:${apiUrl}` : '')}`;
 
    const endpoint = '/api/employees';
    // Construct the full URL
    const fullURL = `${baseURL}${endpoint}`;
+   console.log("fullURL = ",fullURL)
 
   useEffect(() => {
       axios

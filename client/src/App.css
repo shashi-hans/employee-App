@@ -73,7 +73,6 @@
 }
 
 .card-container {
-  height:300px;
   width: 150px;
   margin: 0 auto;
   border-radius: 5px;
@@ -91,10 +90,14 @@
   font-size: 1em;
   font-weight: 400;
   padding: 10px 0 10px 0;
+  white-space: nowrap;       /* Prevent text from wrapping to the next line */
+  overflow: auto;          /* Hide any content that overflows the container */
 }
 
 .card-container h3, p {
   font-weight: 300;
+  white-space: nowrap;       /* Prevent text from wrapping to the next line */
+  overflow: auto;          /* Hide any content that overflows the container */
 }
 
 .card-container h3 {
