@@ -9,9 +9,16 @@ function ShowEmployeeDetails(props) {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  // Extract the base URL
+  const baseURL = `${window.location.protocol}//${window.location.hostname}${(window.location.port ? `:${window.location.port}` : '')}`;
+
+  const endpoint = '/api/employees';
+  // Construct the full URL
+  const fullURL = `${baseURL}${endpoint}`;
+
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/employees/${id}`)
+      .get(`${fullURL}/${id}`)
       .then((res) => {
         setemployee(res.data);
       })
@@ -22,7 +29,7 @@ function ShowEmployeeDetails(props) {
 
   const onDeleteClick = (id) => {
     axios
-      .delete(`http://localhost:4000/api/employees/${id}`)
+      .delete(`${fullURL}/${id}`)
       .then((res) => {
         navigate('/');
       })

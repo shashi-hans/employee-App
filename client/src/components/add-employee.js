@@ -73,9 +73,15 @@ const AddEmployee = (props) => {
     if(errors){
       console.log("Employee Profile not created. Please fill correct data and remove errors")
       }else{
+        // Extract the base URL
+        const baseURL = `${window.location.protocol}//${window.location.hostname}${(window.location.port ? `:${window.location.port}` : '')}`;
+
+        const endpoint = '/api/employees';
+        // Construct the full URL
+        const fullURL = `${baseURL}${endpoint}`;
 
         axios
-          .post('http://localhost:4000/api/employees', employee)
+          .post(fullURL, employee)
           .then((res) => {
             setEmployee({
               full_name: '',

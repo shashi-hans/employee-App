@@ -7,9 +7,16 @@ import EmployeeCard from './employee-card';
 function ShowEmployeeList() {
   const [employees, setemployees] = useState([]);
 
+   // Extract the base URL
+   const baseURL = `${window.location.protocol}//${window.location.hostname}${(window.location.port ? `:${window.location.port}` : '')}`;
+
+   const endpoint = '/api/employees';
+   // Construct the full URL
+   const fullURL = `${baseURL}${endpoint}`;
+
   useEffect(() => {
       axios
-      .get('http://localhost:4000/api/employees')
+      .get(fullURL)
       .then((res) => {
         setemployees(res.data);
       })
