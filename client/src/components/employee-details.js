@@ -2,19 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
+import { fullURL } from '../util';
 
 function ShowEmployeeDetails(props) {
   const [employee, setemployee] = useState({});
 
   const { id } = useParams();
   const navigate = useNavigate();
-
-  const apiUrl = process.env.PORT || 4000;
-  // Extract the base URL
-  const baseURL = `${window.location.protocol}//${window.location.hostname}${(apiUrl ? `:${apiUrl}` : '')}`;
-  const endpoint = '/api/employees';
-  // Construct the full URL
-  const fullURL = `${baseURL}${endpoint}`;
 
   useEffect(() => {
     axios

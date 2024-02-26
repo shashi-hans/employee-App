@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../App.css';
+import { fullURL } from '../util';
 
 function UpdateEmployeeInfo(props) {
-  const [employee, setemployee] = useState({
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [employee, setEmployee] = useState({
     full_name: '',
     gender: '',
     phone: '',
@@ -16,20 +19,55 @@ function UpdateEmployeeInfo(props) {
     address: '',
   });
 
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const apiUrl = process.env.PORT || 4000;
-  // Extract the base URL
-  const baseURL = `${window.location.protocol}//${window.location.hostname}${(apiUrl ? `:${apiUrl}` : '')}`;
-  const endpoint = '/api/employees';
-  // Construct the full URL
-  const fullURL = `${baseURL}${endpoint}`;
+  const [errors, setErrors] = useState({
+    full_name: '',
+    gender: '',
+    email: '',
+    phone: '',
+    pan: '',
+    organization: '',
+    designation: '',
+    salary: '',
+    address: '',
+  });
 
+  // Change Employee data
+  const onChange = (e) => {
+    const { name, value } = e.target;
+  
+    switch (name) {
+      case 'full_name':
+        setErrors({ ...errors, full_name:/^[a-zA-Z ]+$/.test(value) ? '' : 'Full Name is required' });
+        break;
+      case 'gender':
+        setErrors({ ...errors, gender: /^(male|female)$/.test(value) ? '' : 'Invalid gender (male or female only)'});
+        break;
+      case 'email':
+        setErrors({...errors,email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? '' : 'Invalid email address',});
+        break;
+      case 'phone':
+        setErrors({...errors,phone: /^[6-9]\d{9}$/.test(value) ? '' : 'Invalid phone number',});
+        break;
+      case 'pan':
+        setErrors({...errors,pan: /^[a-zA-Z]{3}[P|p][a-zA-Z]{1}[0-9]{4}[a-zA-Z]{1}$/.test(value) ? '' : 'Invalid PAN number',});
+        break;
+      case 'address':
+        setErrors({...errors,address: /[a-zA-Z0-9\s,./]+$/.test(value) ? '' : 'Invalid address',});
+        break;
+      default:
+        break;
+    }
+  
+    // Update employee state
+    setEmployee({ ...employee, [name]: value });
+    };
+    
+  // Fetch employee data on component mount
   useEffect(() => {
     axios
       .get(`${fullURL}/${id}`)
       .then((res) => {
-        setemployee({
+        setEmployee({
           full_name: res.data.full_name,
           gender: res.data.gender,
           phone: res.data.phone,
@@ -46,13 +84,19 @@ function UpdateEmployeeInfo(props) {
       });
   }, [id,fullURL]);
 
-  const onChange = (e) => {
-    setemployee({ ...employee, [e.target.name]: e.target.value });
-  };
-
   const onSubmit = (e) => {
     e.preventDefault();
-
+    let isLengthGreaterThanOne
+    for (const key in errors) {
+      if (errors.hasOwnProperty(key)) {
+        const value = errors[key];
+        isLengthGreaterThanOne = value.length > 1;
+        if (isLengthGreaterThanOne) break
+      }
+    }
+    if(isLengthGreaterThanOne){
+      alert("Employee Profile not updated. Please fill correct data and remove errors ")
+      }else{
     const data = {
       full_name: employee.full_name,
       gender: employee.gender,
@@ -73,6 +117,7 @@ function UpdateEmployeeInfo(props) {
       .catch((err) => {
         console.log('Error in UpdateEmployeeInfo!');
       });
+    }
   };
 
   return (
@@ -103,6 +148,7 @@ function UpdateEmployeeInfo(props) {
                 value={employee.full_name}
                 onChange={onChange}
               />
+              <span className='error-message'>{errors.full_name}</span>
             </div>
             <div className='form-group'>
               <label htmlFor='gender'>Gender</label>
@@ -114,6 +160,7 @@ function UpdateEmployeeInfo(props) {
                 value={employee.gender}
                 onChange={onChange}
               />
+              <span className='error-message'>{errors.gender}</span>
             </div>
             <div className='form-group'>
               <label htmlFor='phone'>Phone</label>
@@ -125,6 +172,7 @@ function UpdateEmployeeInfo(props) {
                 value={employee.phone}
                 onChange={onChange}
               />
+              <span className='error-message'>{errors.phone}</span>
             </div>
             <div className='form-group'>
               <label htmlFor='pan'>PAN number</label>
@@ -136,6 +184,7 @@ function UpdateEmployeeInfo(props) {
               value={employee.pan}
               onChange={onChange}
               />
+              <span className='error-message'>{errors.pan}</span>
             </div>
             <div className='form-group'>
               <label htmlFor='email'>Email</label>
@@ -147,6 +196,7 @@ function UpdateEmployeeInfo(props) {
                 value={employee.email}
                 onChange={onChange}
               />
+              <span className='error-message'>{errors.email}</span>
             </div>
             <div className='form-group'>
               <label htmlFor='salary'>Salary</label>
@@ -158,6 +208,7 @@ function UpdateEmployeeInfo(props) {
                 value={employee.salary}
                 onChange={onChange}
               />
+              <span className='error-message'>{errors.salary}</span>
             </div>
             <div className='form-group'>
               <label htmlFor='designation'>Designation</label>
@@ -169,6 +220,7 @@ function UpdateEmployeeInfo(props) {
                 value={employee.designation}
                 onChange={onChange}
               />
+              <span className='error-message'>{errors.designation}</span>
             </div>
             <div className='form-group'>
               <label htmlFor='organization'>Organization</label>
@@ -180,6 +232,7 @@ function UpdateEmployeeInfo(props) {
                 value={employee.organization}
                 onChange={onChange}
               />
+              <span className='error-message'>{errors.organization}</span>
             </div>
             <div className='form-group'>
               <label htmlFor='address'>Address</label>
@@ -191,6 +244,7 @@ function UpdateEmployeeInfo(props) {
                 value={employee.address}
                 onChange={onChange}
               />
+              <span className='error-message'>{errors.address}</span>
             </div>
             <button
               type='submit'

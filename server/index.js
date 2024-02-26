@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 });
 
 // use Routes
-app.use('/api/employees', employeeRoutes)
+app.use('/api', employeeRoutes)
 
 // Connect Database
 connectDB();

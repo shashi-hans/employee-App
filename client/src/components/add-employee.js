@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import "../App.css";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import { fullURL } from '../util';
 
 const AddEmployee = (props) => {
-  // Define the state with useState hook
   const navigate = useNavigate();
   const [employee, setEmployee] = useState({
     full_name: '',
@@ -32,33 +32,25 @@ const AddEmployee = (props) => {
   const onChange = (e) => {
     const { name, value } = e.target;
 
-  // Regular expressions for validation
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const phoneRegex = /^[6-9]\d{9}$/;
-  const panRegex = /^[a-zA-Z]{3}[P|p][a-zA-Z]{1}[0-9]{4}[a-zA-Z]{1}$/;
-  const full_nameRegex =  /^[a-zA-Z ]+$/;
-  const addressRegex = /[a-zA-Z0-9\s,./]+$/ ;
-  const genderRegex = /^(male|female)$/i;
-
    // Validate inputs and set error messages
    switch (name) {
     case 'full_name':
-      setErrors({ ...errors, full_name:full_nameRegex.test(value) ? '' : 'Full Name is required' });
+      setErrors({ ...errors, full_name:/^[a-zA-Z ]+$/.test(value) ? '' : 'Full Name is required' });
       break;
     case 'gender':
-      setErrors({ ...errors, gender: genderRegex.test(value) ? '' : 'Invalid gender (male or female only)'});
+      setErrors({ ...errors, gender: /^(male|female)$/.test(value) ? '' : 'Invalid gender (male or female only)'});
       break;
     case 'email':
-      setErrors({...errors,email: emailRegex.test(value) ? '' : 'Invalid email address',});
+      setErrors({...errors,email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? '' : 'Invalid email address',});
       break;
     case 'phone':
-      setErrors({...errors,phone: phoneRegex.test(value) ? '' : 'Invalid phone number',});
+      setErrors({...errors,phone: /^[6-9]\d{9}$/.test(value) ? '' : 'Invalid phone number',});
       break;
     case 'pan':
-      setErrors({...errors,pan: panRegex.test(value) ? '' : 'Invalid PAN number',});
+      setErrors({...errors,pan: /^[a-zA-Z]{3}[P|p][a-zA-Z]{1}[0-9]{4}[a-zA-Z]{1}$/.test(value) ? '' : 'Invalid PAN number',});
       break;
     case 'address':
-      setErrors({...errors,address: addressRegex.test(value) ? '' : 'Invalid address',});
+      setErrors({...errors,address: /[a-zA-Z0-9\s,./]+$/.test(value) ? '' : 'Invalid address',});
       break;
     default:
       break;
@@ -75,21 +67,12 @@ const AddEmployee = (props) => {
       if (errors.hasOwnProperty(key)) {
         const value = errors[key];
         isLengthGreaterThanOne = value.length > 1;
-    
-        console.log(`${key}: ${isLengthGreaterThanOne ? 'Valid' : 'Invalid'}`);
+        if (isLengthGreaterThanOne) break
       }
     }
     if(isLengthGreaterThanOne){
-      console.log("Employee Profile not created. Please fill correct data and remove errors ")
-      console.log(typeof errors)
+      alert("Employee Profile not created. Please fill correct data and remove errors ")
       }else{
-        const apiUrl = process.env.PORT || 4000;
-        // Extract the base URL
-        const baseURL = `${window.location.protocol}//${window.location.hostname}${(apiUrl ? `:${apiUrl}` : '')}`;
-
-        const endpoint = '/api/employees';
-        // Construct the full URL
-        const fullURL = `${baseURL}${endpoint}`;
 
         axios
           .post(fullURL, employee)
@@ -105,15 +88,15 @@ const AddEmployee = (props) => {
               salary: '',
               address: '',
             });
+            res.status === 200 && alert(res.data.msg)
     
             // Push to /
             navigate('/');
           })
           .catch((err) => {
-            console.log('Error in Adding Employee!');
+            alert('Error in Adding Employee!');
           });
-    }
-
+      }
   };
 
   return (
@@ -195,6 +178,7 @@ const AddEmployee = (props) => {
                   value={employee.organization}
                   onChange={onChange}
                 />
+                <span className='error-message'>{errors.organization}</span>
               </div>
               <div className='form-group'>
                 <input
@@ -205,6 +189,7 @@ const AddEmployee = (props) => {
                   value={employee.designation}
                   onChange={onChange}
                 />
+                <span className='error-message'>{errors.designation}</span>
               </div>
               <div className='form-group'>
                 <input
@@ -215,6 +200,7 @@ const AddEmployee = (props) => {
                   value={employee.salary}
                   onChange={onChange}
                 />
+                <span className='error-message'>{errors.salary}</span>
               </div>
               <div className='form-group'>
                 <input

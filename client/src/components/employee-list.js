@@ -3,18 +3,11 @@ import '../App.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import EmployeeCard from './employee-card';
+import { fullURL }  from '../util';
 
 function ShowEmployeeList() {
   const [employees, setemployees] = useState([]);
-
-  const apiUrl = process.env.PORT || 4000;
-   // Extract the base URL
-   const baseURL = `${window.location.protocol}//${window.location.hostname}${(apiUrl ? `:${apiUrl}` : '')}`;
-
-   const endpoint = '/api/employees';
-   // Construct the full URL
-   const fullURL = `${baseURL}${endpoint}`;
-   console.log("fullURL = ",fullURL)
+  let employeeList
 
   useEffect(() => {
       axios
@@ -25,12 +18,14 @@ function ShowEmployeeList() {
       .catch((err) => {
         console.log('Error from ShowEmployeeList');
       });
-  }, [fullURL]);
+  }, []);
 
-  const employeeList =
+  if(employees.length != 0) {
+   employeeList =
     employees.length === 0
       ? 'No employees Available'
       : employees.map((employee, k) => <EmployeeCard employee={employee} key={k} />);
+  }
 
   return (
     <div className='ShowEmployeeList'>
