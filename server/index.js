@@ -21,7 +21,7 @@ app.use(cors({ origin: true, credentials: true }));
 
 // define a Test route
 app.get('/', (req, res) => {
-  res.send("Hello Shashi ");
+  res.send("Hello Shashi , App route is Working");
 });
 
 // use Routes
