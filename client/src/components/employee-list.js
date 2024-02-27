@@ -20,7 +20,7 @@ function ShowEmployeeList() {
       });
   }, []);
 
-  if(employees.length != 0) {
+  if(employees.length !== 0) {
    employeeList =
     employees.length === 0
       ? 'No employees Available'

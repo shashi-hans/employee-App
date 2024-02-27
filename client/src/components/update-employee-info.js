@@ -82,7 +82,7 @@ function UpdateEmployeeInfo(props) {
       .catch((err) => {
         console.log('Error from UpdateEmployeeInfo');
       });
-  }, [id,fullURL]);
+  }, [id]);
 
   const onSubmit = (e) => {
     e.preventDefault();
