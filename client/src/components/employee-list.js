@@ -7,6 +7,7 @@ import { fullURL }  from '../util';
 
 function ShowEmployeeList() {
   const [employees, setemployees] = useState([]);
+  const [fetchingData, setFetchingData] = useState(true); // State to track if data is being fetched
   let employeeList
 
   useEffect(() => {
@@ -14,9 +15,10 @@ function ShowEmployeeList() {
       .get(fullURL)
       .then((res) => {
         setemployees(res.data);
+        setFetchingData(false); // Set fetchingData to false when data is received
       })
       .catch((err) => {
-        console.log('Error from ShowEmployeeList');
+        console.log('Error Showing EmployeeList');
       });
   }, []);
 
@@ -48,7 +50,11 @@ function ShowEmployeeList() {
             <hr />
           </div>
         </div>
-
+        {fetchingData && 
+          <h3> 
+            Fetching Data ... 
+        </h3>
+        }
         <div className='list'>{employeeList}</div>
       </div>
     </div>

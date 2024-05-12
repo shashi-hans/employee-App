@@ -11,16 +11,16 @@ const EmployeeCard = (props) => {
 
     return(
         <div className="card-container">
+            <Link to={`/show-employee/${employee._id}`}>
             <div >
-                <Link to={`/show-employee/${employee._id}`}>
                     <img className="desc" src={img} alt="" />
-                </Link>    
             </div>
             <div >
                 <h2>{ employee.full_name }</h2>
                 <p>{employee.designation}</p>   
                 <h3>{employee.phone}</h3>
             </div>
+                </Link>    
         </div>
     )
 };

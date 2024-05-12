@@ -87,6 +87,7 @@
 }
 
 .card-container h2 {
+  color: whitesmoke;
   font-size: 1em;
   font-weight: 400;
   padding: 10px 0 10px 0;
@@ -95,6 +96,7 @@
 }
 
 .card-container h3, p {
+  color: whitesmoke;
   font-weight: 300;
   white-space: nowrap;       /* Prevent text from wrapping to the next line */
   overflow: auto;          /* Hide any content that overflows the container */
