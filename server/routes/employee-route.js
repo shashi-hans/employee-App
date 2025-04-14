@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     Employee.create(req.body)
     .then(employee => {
-        console.log('Employee added successfully')
+        console.log(`Employee ${employee.full_name} added successfully`)
         res.json({ msg: 'Employee added successfully' })
     })  
     .catch(err => {
@@ -35,7 +35,7 @@ router.get('/:id',  (req, res) => {
 router.put('/:id', (req, res) => {
     Employee.findByIdAndUpdate(req.params.id, req.body)
       .then(employee => {
-        console.log('Employee Profile Updated successfully')
+        console.log(`Employee ${employee.full_name}'s Profile Updated successfully`)
         res.json({ msg: 'Profile Updated successfully' })
       })
       .catch(err =>  {
@@ -46,10 +46,10 @@ router.put('/:id', (req, res) => {
 
 // Delete a employee with id
 router.delete('/:id', (req, res) => {
-    Employee.findByIdAndRemove(req.params.id, req.body)
+    Employee.findByIdAndDelete(req.params.id, req.body)
       .then(employee => {
-        console.log('Employee Profile deleted successfully')
-        res.json({ mgs: 'Employee Profile deleted successfully' })
+        console.log(`Employee ${employee.full_name}'s Profile deleted successfully` )
+        res.json({ msg: 'Employee Profile deleted successfully' })
       } )
       .catch(err => {
         console.log('Error in deleting the profile')

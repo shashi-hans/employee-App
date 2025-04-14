@@ -29,6 +29,7 @@ const AddEmployee = (props) => {
     salary: '',
     address: '',
   });
+  const [showModal, setShowModal] = useState(null); // ✅ Error state
   const onChange = (e) => {
     const { name, value } = e.target;
 
@@ -67,12 +68,23 @@ const AddEmployee = (props) => {
       if (errors.hasOwnProperty(key)) {
         const value = errors[key];
         isLengthGreaterThanOne = value.length > 1;
-        if (isLengthGreaterThanOne) break
+        if (isLengthGreaterThanOne) {
+          setShowModal(true);
+          break
+        }
       }
     }
-    if(isLengthGreaterThanOne){
-      alert("Employee Profile not created. Please fill correct data and remove errors ")
-      }else{
+    if(showModal){
+      <div className='error-modal'>
+        <div className='error-content'>
+          <h4>Error</h4>
+          <p>Employee Profile not created. Please fill correct data and remove errors</p>
+          <button className='btn btn-secondary' onClick={() => setShowModal(false)}>
+            Close
+          </button>
+        </div>
+      </div>  
+    }else{
 
         axios
           .post(fullURL, employee)

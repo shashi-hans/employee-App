@@ -118,3 +118,108 @@
 .error-message {
   color: rgb(250, 22, 22);
 }
+.loading-container {
+  font-family: sans-serif;
+  font-size: 34px;
+  font-weight: 500;
+  color: whitesmoke;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dot {
+  font-size: 54px;
+  animation: bounce 1.2s infinite ease-in-out;
+  margin-bottom: 10px;
+}
+
+.dot1 {
+  animation-delay: 0s;
+}
+
+.dot2 {
+  animation-delay: 0.2s;
+}
+
+.dot3 {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  40% {
+    transform: scale(1.6);
+    opacity: 1;
+  }
+}
+.error-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  h4 {
+    color: red;
+  }
+  p {
+    color: #010101;
+  }
+}
+
+.error-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  p {
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    margin-bottom: 1rem;
+  }
+}
+hr {
+  border-top: 1px solid rgb(243 237 237);
+}
+@media (min-width: 768px) {
+  .col-md-11 {
+    flex: none;
+    max-width: none;
+  }
+} 
+.modal-overlay {
+  position: absolute;
+  top: 50%;
+  width: 50%;
+}
+.modal-content {
+  left: 55%;
+  align-items: center;
+  padding: 10px;
+  h3 {
+    color: black;
+    padding: 15px;
+    text-align: center;
+  }
+  h4 , p {
+    color: black;
+  }
+}
+.modal-buttons {
+  margin-bottom: 10px;
+}
+.btn.btn-danger {
+  margin-right: 20px;
+}

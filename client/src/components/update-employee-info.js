@@ -30,6 +30,7 @@ function UpdateEmployeeInfo(props) {
     salary: '',
     address: '',
   });
+  const [showModal, setShowModal] = useState(null); // ✅ Error state
 
   // Change Employee data
   const onChange = (e) => {
@@ -91,12 +92,21 @@ function UpdateEmployeeInfo(props) {
       if (errors.hasOwnProperty(key)) {
         const value = errors[key];
         isLengthGreaterThanOne = value.length > 1;
-        if (isLengthGreaterThanOne) break
+        if (isLengthGreaterThanOne)  {
+          setShowModal(true);
+          break
+        }
       }
     }
-    if(isLengthGreaterThanOne){
-      alert("Employee Profile not updated. Please fill correct data and remove errors ")
-      }else{
+    if(showModal){
+      <div className="modal-overlay">
+          <div className="modal-content">
+            <h4>Employee Profile not updated</h4>
+            <p> Please fill correct data and remove errors</p>
+            <button className='btn btn-secondary' onClick={() => setShowModal(false)}></button>
+          </div>
+        </div>
+     }else{
     const data = {
       full_name: employee.full_name,
       gender: employee.gender,
